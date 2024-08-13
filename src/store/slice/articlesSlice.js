@@ -23,7 +23,7 @@ export const fetchNewsArticlesAsync = createAsyncThunk('articles/fetchNewsArticl
 });
 
 export const fetchNewsAIArticlesAsync = createAsyncThunk('articles/fetchNewsAIArticles', async ({ query, filters }) => {
-  if (filters.source === 'the-guardian') {
+  if (!!filters.source) {
     return [];
   }
   const response = await fetchNewsAIArticles(query, filters);
@@ -33,8 +33,11 @@ export const fetchNewsAIArticlesAsync = createAsyncThunk('articles/fetchNewsAIAr
 export const fetchGuardianArticlesAsync = createAsyncThunk(
   'articles/fetchGuardianArticles',
   async ({ query, filters }) => {
-    const response = await fetchGuardianArticles(query, filters);
-    return response;
+    if (!filters.source || filters.source === 'the-guardian') {
+      const response = await fetchGuardianArticles(query, filters);
+      return response;
+    }
+    return [];
   }
 );
 

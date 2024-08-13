@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 
-import { Box, Grid } from '@mui/material';
+import { Box, Grid, Typography } from '@mui/material';
 import { ArticleCard } from '../ArticleCard';
 
 export const NewsFeed = ({ articles }) => (
@@ -15,6 +15,13 @@ export const NewsFeed = ({ articles }) => (
         ))}
       </Masonry>
     </ResponsiveMasonry>
+
+    {!articles.length && (
+      <Typography variant="body1" sx={{ color: 'blue', fontWeight: 'bold' }}>
+        No articles found :( <br />
+        Change your filters
+      </Typography>
+    )}
   </Box>
 );
 
