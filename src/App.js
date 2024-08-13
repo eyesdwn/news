@@ -53,6 +53,8 @@ const App = () => {
     setQuery('');
   }, [setFilters, setQuery]);
 
+  const shouldShowEmptyState = !articles.length && !isLoading && !error;
+
   return (
     <Container maxWidth="lg">
       <Box my={4}>
@@ -81,6 +83,12 @@ const App = () => {
         {error && (
           <Typography variant="h6" sx={{ mt: 4 }}>
             Error: {error}
+          </Typography>
+        )}
+        {shouldShowEmptyState && (
+          <Typography variant="body1" sx={{ color: 'blue', fontWeight: 'bold', mt: 3 }}>
+            No articles found :( <br />
+            Change your filters
           </Typography>
         )}
         <NewsFeed articles={articles} />
