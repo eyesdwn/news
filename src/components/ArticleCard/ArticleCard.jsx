@@ -1,7 +1,7 @@
 import { Card, CardContent, CardMedia, Link, Stack, Typography } from '@mui/material';
-import dayjs from 'dayjs';
 import PropTypes from 'prop-types';
 import { useCallback, useState } from 'react';
+import { formatDate } from '../../store/services/utils';
 
 const fallbackURL = 'https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png';
 
@@ -36,7 +36,7 @@ export const ArticleCard = ({ article }) => {
         </Typography>
         <Stack direction="row" justifyContent="space-between" alignItems="center" mt={1}>
           <Typography color="blue" variant="caption">
-            {dayjs(article.date).format('YYYY-MM-DD')}
+            {formatDate(article.date)}
           </Typography>
           {article.author && (
             <Typography variant="caption" color="blue">
