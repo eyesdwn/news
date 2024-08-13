@@ -3,8 +3,9 @@ import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 
 import { Box, Grid } from '@mui/material';
 import { ArticleCard } from '../ArticleCard';
+import { memo } from 'react';
 
-export const NewsFeed = ({ articles }) => (
+const NewsFeedComponent = ({ articles }) => (
   <Box mt={4}>
     <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}>
       <Masonry gutter="16px">
@@ -17,6 +18,8 @@ export const NewsFeed = ({ articles }) => (
     </ResponsiveMasonry>
   </Box>
 );
+
+export const NewsFeed = memo(NewsFeedComponent);
 
 NewsFeed.propTypes = {
   articles: PropTypes.array.isRequired,

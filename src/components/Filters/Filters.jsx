@@ -6,8 +6,9 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import PropTypes from 'prop-types';
 
 import { categories, sources } from './data';
+import { memo } from 'react';
 
-export const Filters = ({ onFilterChange, filters }) => (
+const FiltersComponent = ({ onFilterChange, filters }) => (
   <Stack dsx={{ flexDirection: { xs: 'column', sm: 'row' } }} gap={2}>
     <Stack direction="row" width="100%" gap={2}>
       <FormControl fullWidth>
@@ -57,6 +58,8 @@ export const Filters = ({ onFilterChange, filters }) => (
     </Stack>
   </Stack>
 );
+
+export const Filters = memo(FiltersComponent);
 
 Filters.propTypes = {
   onFilterChange: PropTypes.func.isRequired,
